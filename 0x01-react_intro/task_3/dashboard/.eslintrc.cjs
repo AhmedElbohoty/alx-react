@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2023: true },
+  env: { browser: true, es2023: true, 'jest/globals': true },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -12,7 +12,7 @@ module.exports = {
     sourceType: 'module',
     jsx: true,
   },
-  plugins: ['react'],
+  plugins: ['react', 'jest'],
   rules: {
     'react/react-in-jsx-scope': 'off',
   },
