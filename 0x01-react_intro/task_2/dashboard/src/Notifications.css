@@ -1,5 +1,13 @@
 .Notifications {
+  position: relative;
   padding: 24px;
-  border: 2px solid red;
-  font-family: Arial, Helvetica, sans-serif;
+  border: 2px dashed red;
+}
+
+.Notifications-li[data-priority='default'] {
+  color: blue;
+}
+
+.Notifications-li[data-priority='urgent'] {
+  color: red;
 }

@@ -2,7 +2,6 @@
   position: relative;
   padding: 24px;
   border: 2px dashed red;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .Notifications-li[data-priority='default'] {

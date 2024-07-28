@@ -24,6 +24,37 @@
 .App-body {
   padding: 48px;
 }
+
+.App-body-p {
+  margin-bottom: 8px;
+}
+
+.form {
+  display: flex;
+  gap: 8px;
+}
+
+.form-input-cont {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-input {
+  width: 200px;
+  height: 32px;
+  border: lightgray solid;
+  border-radius: 4px;
+}
+
+.form-button {
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+  border: lightgray solid;
+  border-radius: 8px;
+  background-color: transparent;
+}
 /* #endregion body */
 
 /* #region footer */

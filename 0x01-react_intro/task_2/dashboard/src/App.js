@@ -15,20 +15,34 @@ function App() {
 
       {/* App body */}
       <div className="App-body">
-        <p>Login to access the full dashboard</p>
+        <p className="App-body-p">Login to access the full dashboard</p>
         <form className="form">
           {/* Email */}
-          <div className="input">
-            <label htmlFor="email">Email:</label>
-            <input type="email" name="email" id="email" />
+          <div className="form-input-cont">
+            <label className="form-label" htmlFor="email">
+              Email:
+            </label>
+            <input
+              className="form-input"
+              type="email"
+              name="email"
+              id="email"
+            />
           </div>
 
           {/* Password */}
-          <div className="input">
-            <label htmlFor="password">Password: </label>
-            <input type="password" name="password" id="password" />
+          <div className="form-input-cont">
+            <label className="form-label" htmlFor="password">
+              Password:
+            </label>
+            <input
+              className="form-input"
+              type="password"
+              name="password"
+              id="password"
+            />
           </div>
-          <button>OK</button>
+          <button className="form-button">OK</button>
         </form>
       </div>
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import reportWebVitals from 'src/reportWebVitals';
-import App from 'src/App';
-import Notifications from 'src/Notifications';
+import reportWebVitals from './reportWebVitals';
+import App from './App';
+import Notifications from './Notifications';
 
 import './styles/base.css';
 
