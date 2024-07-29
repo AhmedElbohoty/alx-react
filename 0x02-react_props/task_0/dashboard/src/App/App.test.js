@@ -5,8 +5,8 @@ import App from 'src/App/App';
 
 describe('App tests', () => {
   it('renders without crashing', () => {
-    const component = shallow(<App />);
+    const wrapper = shallow(<App />);
 
-    expect(component).toBeDefined();
+    expect(wrapper).toBeDefined();
   });
 });

@@ -1,0 +1,27 @@
+#CourseList {
+  margin: 16px;
+  border: 1px solid #ddd;
+  font-size: 1.2rem;
+}
+
+.courselist-tr {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 64px;
+}
+
+.courselist-th,
+.courselist-td {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  line-height: 64px;
+}
+
+.courselist-th:only-child {
+  grid-column: 1 / -1;
+}
+
+.courselist-th:nth-child(2),
+.courselist-td:nth-child(2) {
+  border-left: 1px solid #ddd;
+}

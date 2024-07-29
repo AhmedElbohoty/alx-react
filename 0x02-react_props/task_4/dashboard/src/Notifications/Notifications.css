@@ -1,10 +1,24 @@
+.Notifications-cont {
+  position: fixed;
+  top: 8px;
+  right: 8px;
+}
+
+.menuItem {
+  text-align: right;
+}
+
 .Notifications {
   position: relative;
   padding: 24px;
+  margin-top: 8px;
   border: 2px dashed red;
 }
 
 .Notifications-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
   height: 32px;
   width: 32px;
   display: flex;
@@ -13,6 +27,11 @@
   border: lightgray solid;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.Notifications-close-img {
+  width: 16px;
+  height: 16px;
 }
 
 .Notifications-li[data-notification-type='default'] {

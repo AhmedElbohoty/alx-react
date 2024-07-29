@@ -5,8 +5,8 @@ import App from 'src/App/App';
 
 describe('App tests', () => {
   it('should render a div with the class App-body', () => {
-    const component = shallow(<App />);
+    const wrapper = shallow(<App />);
 
-    expect(component.find('.App-body')).toBeDefined();
+    expect(wrapper.find('.App-body')).toBeDefined();
   });
 });
