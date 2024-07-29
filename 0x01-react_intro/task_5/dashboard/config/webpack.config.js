@@ -1,13 +1,21 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-export default {
+module.exports = {
   entry: './src/index.js',
   output: {
+    path: path.resolve(__dirname, '../dist'),
     filename: 'bundle.js',
   },
   mode: 'development',
+
   module: {
     rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
@@ -19,24 +27,27 @@ export default {
           {
             loader: 'image-webpack-loader',
             options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
+              bypassOnDebug: true,
+              disable: true,
             },
           },
         ],
       },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
-      },
     ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    modules: [path.resolve(__dirname, '../src'), 'node_modules'],
+    extensions: ['.*', '.js', '.jsx'],
+    alias: {
+      'assets/*': path.resolve(__dirname, '../src/assets/*'),
+      'components/*': path.resolve(__dirname, '../src/components/*'),
+      'styles/*': path.resolve(__dirname, '../src/styles/*'),
+      'services/*': path.resolve(__dirname, '../src/services/*'),
+      'src/*': path.resolve(__dirname, '../src/*'),
+    },
   },
   devServer: {
-    static: './dist',
+    static: path.join(__dirname, './public'),
     compress: true,
     open: true,
     hot: true,
@@ -47,7 +58,7 @@ export default {
     new HtmlWebpackPlugin({
       name: 'index.html',
       inject: false,
-      template: './dist/index.html',
+      template: './index.html',
     }),
   ],
 };

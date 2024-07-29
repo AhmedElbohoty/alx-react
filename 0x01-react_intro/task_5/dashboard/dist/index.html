@@ -1,71 +1,17 @@
-Html Webpack Plugin:
-<pre>
-  Error: Child compilation failed:
-  Module not found: Error: Can't resolve '/Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/task_5/dashboard/dist  /index.html' in '/Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/task_5/dashboard'
-  Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".*",".js",".jsx"]' instead of '["*",".js",".jsx"]'?
-  ModuleNotFoundError: Module not found: Error: Can't resolve '/Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/  task_5/dashboard/dist/index.html' in '/Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/task_5/dashboard'
-  Did you miss the leading dot in 'resolve.extensions'? Did you mean '[".*",".js",".jsx"]' instead of '["*",".js",".jsx"]'?
-      at /Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/task_5/dashboard/node_modules/.pnpm/webpack@5.93.0_web  pack-cli@5.1.4/node_modules/webpack/lib/Compilation.js:2100:28
-      at /Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/task_5/dashboard/node_modules/.pnpm/webpack@5.93.0_web  pack-cli@5.1.4/node_modules/webpack/lib/NormalModuleFactory.js:904:13
-      at eval (eval at create (/Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/task_5/dashboard/node_modules/.p  npm/tapable@2.2.1/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:10:1)
-      at /Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/task_5/dashboard/node_modules/.pnpm/webpack@5.93.0_web  pack-cli@5.1.4/node_modules/webpack/lib/NormalModuleFactory.js:341:22
-      at eval (eval at create (/Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/task_5/dashboard/node_modules/.p  npm/tapable@2.2.1/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:9:1)
-      at /Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/task_5/dashboard/node_modules/.pnpm/webpack@5.93.0_web  pack-cli@5.1.4/node_modules/webpack/lib/NormalModuleFactory.js:518:22
-      at /Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/task_5/dashboard/node_modules/.pnpm/webpack@5.93.0_web  pack-cli@5.1.4/node_modules/webpack/lib/NormalModuleFactory.js:151:11
-      at /Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/task_5/dashboard/node_modules/.pnpm/webpack@5.93.0_web  pack-cli@5.1.4/node_modules/webpack/lib/NormalModuleFactory.js:776:25
-      at /Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/task_5/dashboard/node_modules/.pnpm/webpack@5.93.0_web  pack-cli@5.1.4/node_modules/webpack/lib/NormalModuleFactory.js:988:8
-      at /Users/ahmed_elbohoty/Desktop/ALX_SE/alx-react/0x01-react_intro/task_5/dashboard/node_modules/.pnpm/webpack@5.93.0_web  pack-cli@5.1.4/node_modules/webpack/lib/NormalModuleFactory.js:1118:5
-  
-  - Compilation.js:2100 
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/Compilation.js:2100:28
-  
-  - NormalModuleFactory.js:904 
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/NormalModuleFactory.js:904:13
-  
-  
-  - NormalModuleFactory.js:341 
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/NormalModuleFactory.js:341:22
-  
-  
-  - NormalModuleFactory.js:518 
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/NormalModuleFactory.js:518:22
-  
-  - NormalModuleFactory.js:151 
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/NormalModuleFactory.js:151:11
-  
-  - NormalModuleFactory.js:776 
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/NormalModuleFactory.js:776:25
-  
-  - NormalModuleFactory.js:988 
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/NormalModuleFactory.js:988:8
-  
-  - NormalModuleFactory.js:1118 
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/NormalModuleFactory.js:1118:5
-  
-  - child-compiler.js:174 
-    [dashboard]/[html-webpack-plugin@5.6.0_webpack@5.93.0_webpack-cli@5.1.4_]/[html-webpack-plugin]/lib/child-compiler.js:174:1    8
-  
-  - Compiler.js:625 finalCallback
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/Compiler.js:625:5
-  
-  - Compiler.js:660 
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/Compiler.js:660:11
-  
-  - Compiler.js:1349 
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/Compiler.js:1349:17
-  
-  
-  - Hook.js:18 Hook.CALL_ASYNC_DELEGATE [as _callAsync]
-    [dashboard]/[tapable@2.2.1]/[tapable]/lib/Hook.js:18:14
-  
-  - Compiler.js:1345 
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/Compiler.js:1345:33
-  
-  - Compilation.js:2906 finalCallback
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/Compilation.js:2906:11
-  
-  - Compilation.js:3215 
-    [dashboard]/[webpack@5.93.0_webpack-cli@5.1.4]/[webpack]/lib/Compilation.js:3215:11
-  
-  
-</pre>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Task 5" />
+
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
