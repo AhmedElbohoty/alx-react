@@ -2,7 +2,7 @@ import React from 'react';
 
 import logo from 'assets/holberton_logo.jpg';
 
-import './style.css';
+import './Header.css';
 
 function Header() {
   return (

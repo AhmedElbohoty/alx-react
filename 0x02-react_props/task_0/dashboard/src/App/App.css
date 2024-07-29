@@ -18,6 +18,11 @@ body,
   font-family: Arial, Helvetica, sans-serif;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
 button {
   border: none;
   outline: none;
