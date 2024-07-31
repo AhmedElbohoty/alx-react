@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-function WithLogging({ WrappedComponent }) {
+function WithLogging(WrappedComponent) {
   const compName =
-    WrappedComponent.displayName || WrappedComponent.name || 'Component';
+    WrappedComponent?.displayName || WrappedComponent?.name || 'Component';
 
   WithLogging.displayName = `WithLogging(${compName})`;
 
