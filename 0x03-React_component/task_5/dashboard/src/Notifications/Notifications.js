@@ -16,6 +16,10 @@ class Notifications extends Component {
     this.onClickClose = this.onClickClose.bind(this);
   }
 
+  shouldComponentUpdate(next) {
+    return next.listNotifications.length > this.props.listNotifications.length;
+  }
+
   markAsRead(id) {
     console.log(`Notification ${id} has been marked as read`);
   }
