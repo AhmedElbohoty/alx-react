@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import './Login.css';
 
 function Login() {
   return (
-    <div className="App-body">
+    <Fragment>
       <p className="App-body-p">Login to access the full dashboard</p>
       <form className="form">
         {/* Email */}
@@ -29,7 +29,7 @@ function Login() {
         </div>
         <button className="form-button">OK</button>
       </form>
-    </div>
+    </Fragment>
   );
 }
 

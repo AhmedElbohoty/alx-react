@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+import BodySection from '../BodySection/BodySection';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import Notifications from '../Notifications/Notifications';
 import Header from '../Header/Header';
 import Login from '../Login/Login';
@@ -55,8 +57,25 @@ class App extends React.Component {
         />
         <div className="App">
           <Header />
-          {!isLoggedIn && <Login />}
-          {isLoggedIn && <CourseList listCourses={listCourses} />}
+
+          <div className="App-body">
+            {!isLoggedIn && (
+              <BodySectionWithMarginBottom title="Log in to continue">
+                <Login />
+              </BodySectionWithMarginBottom>
+            )}
+            {isLoggedIn && (
+              <BodySectionWithMarginBottom title="Course list">
+                <CourseList listCourses={listCourses} />
+              </BodySectionWithMarginBottom>
+            )}
+            <BodySection title="News from the school">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Perspiciatis at tempora odio.
+              </p>
+            </BodySection>
+          </div>
           <Footer />
         </div>
       </Fragment>
