@@ -1,0 +1,11 @@
+/* #region footer */
+.App-footer {
+  height: 64px;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: var(--primary-2) solid 2px;
+  font-style: italic;
+}
+/* #endregion footer */
