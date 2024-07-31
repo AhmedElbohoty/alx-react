@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import Notifications from '../Notifications/Notifications';
@@ -31,7 +31,7 @@ class App extends React.Component {
     const { isLoggedIn } = this.props;
 
     return (
-      <>
+      <Fragment>
         <Notifications
           displayDrawer={true}
           listNotifications={listNotifications}
@@ -42,7 +42,7 @@ class App extends React.Component {
           {isLoggedIn && <CourseList listCourses={listCourses} />}
           <Footer />
         </div>
-      </>
+      </Fragment>
     );
   }
 }

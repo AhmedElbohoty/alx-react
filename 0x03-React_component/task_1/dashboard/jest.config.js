@@ -1,6 +1,6 @@
-const path = require('path');
-
+/** @type {import('jest').Config} */
 module.exports = {
+  testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['./src/setupTests.js'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/__mocks__/imageMock.js',

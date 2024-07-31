@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import App from './App';
 import Notifications from '../Notifications/Notifications';
@@ -29,5 +29,42 @@ describe('App tests', () => {
 
     expect(wrapper.find(Login)).toHaveLength(0);
     expect(wrapper.find(CourseList)).toHaveLength(1);
+  });
+});
+
+describe('Handle keydown tests', () => {
+  let logOutMock;
+  let alertSpy;
+
+  beforeEach(() => {
+    logOutMock = jest.fn();
+    alertSpy = jest.spyOn(window, 'alert').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    alertSpy.mockRestore();
+  });
+
+  it('When pressing Control + h', () => {
+    mount(<App isLoggedIn={true} logOut={logOutMock} />);
+
+    const event = new KeyboardEvent('keydown', { ctrlKey: true, key: 'h' });
+    document.dispatchEvent(event);
+
+    expect(logOutMock).toHaveBeenCalled();
+    expect(alertSpy).toHaveBeenCalledWith('Logging you out');
+  });
+
+  it('When Control or h keys are pressed separately', () => {
+    mount(<App isLoggedIn={true} logOut={logOutMock} />);
+
+    // Simulate keydown event for Control key only
+    const eventH = new KeyboardEvent('keydown', { key: 'Control' });
+    const eventCtrl = new KeyboardEvent('keydown', { key: 'h' });
+    document.dispatchEvent(eventH);
+    document.dispatchEvent(eventCtrl);
+
+    expect(logOutMock).not.toHaveBeenCalled();
+    expect(alertSpy).not.toHaveBeenCalled();
   });
 });

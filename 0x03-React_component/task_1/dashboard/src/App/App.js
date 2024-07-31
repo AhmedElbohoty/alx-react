@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import Notifications from '../Notifications/Notifications';
@@ -22,16 +22,33 @@ const listNotifications = [
   { id: 3, type: 'urgent', html: getLatestNotification() },
 ];
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleKeydown = this.handleKeydown.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeydown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeydown);
+  }
+
+  handleKeydown(e) {
+    if (e.ctrlKey && e.key === 'h') {
+      alert('Logging you out');
+      this.props.logOut();
+    }
   }
 
   render() {
     const { isLoggedIn } = this.props;
 
     return (
-      <>
+      <Fragment>
         <Notifications
           displayDrawer={true}
           listNotifications={listNotifications}
@@ -42,16 +59,21 @@ class App extends Component {
           {isLoggedIn && <CourseList listCourses={listCourses} />}
           <Footer />
         </div>
-      </>
+      </Fragment>
     );
   }
 }
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
+  logOut: PropTypes.func,
 };
 
 App.defaultProps = {
   isLoggedIn: false,
+  logOut: () => {
+    return;
+  },
 };
+
 export default App;
