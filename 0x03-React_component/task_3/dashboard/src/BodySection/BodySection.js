@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './BodySection.css';
 
-class BodySection extends Component() {
+class BodySection extends Component {
   render() {
     const { children, title } = this.props;
     return (
