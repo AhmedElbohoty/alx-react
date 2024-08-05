@@ -1,0 +1,12 @@
+.App-header {
+  display: flex;
+  align-items: center;
+  color: var(--primary-2);
+  border-bottom: var(--primary-2) solid 2px;
+}
+
+.App-header-img {
+  width: 224px;
+  height: 224px;
+  margin-right: 16px;
+}
