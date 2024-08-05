@@ -13,6 +13,10 @@ beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
 });
 
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 describe('App tests', () => {
   test('Rendering App without crash', () => {
     const wrapper = shallow(<App />);

@@ -8,6 +8,10 @@ beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
 });
 
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 const listCourses = [
   { id: 1, name: 'ES6', credit: 60 },
   { id: 2, name: 'Webpack', credit: 20 },

@@ -8,6 +8,10 @@ beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
 });
 
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 describe('BodySection tests', () => {
   it('should render without crash', () => {
     const wrapper = shallow(

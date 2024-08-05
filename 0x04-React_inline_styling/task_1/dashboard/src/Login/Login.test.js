@@ -6,6 +6,10 @@ beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
 });
 
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 import Login from './Login';
 
 describe('Login tests', () => {

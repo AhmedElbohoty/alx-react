@@ -1,6 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { jest } from '@jest/globals';
+import { StyleSheetTestUtils } from 'aphrodite';
+
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
+
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
 
 import WithLogging from './WithLogging';
 import Login from '../Login/Login';

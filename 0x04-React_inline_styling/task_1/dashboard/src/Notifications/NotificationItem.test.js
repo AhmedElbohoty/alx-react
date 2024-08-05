@@ -7,6 +7,10 @@ beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
 });
 
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 import NotificationItem from './NotificationItem';
 
 describe('NotificationItem tests', () => {

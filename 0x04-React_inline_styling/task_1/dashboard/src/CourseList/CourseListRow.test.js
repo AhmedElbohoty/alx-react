@@ -6,6 +6,10 @@ beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
 });
 
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 import CourseListRow from './CourseListRow';
 
 describe('CourseListRow tests', () => {

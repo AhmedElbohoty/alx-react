@@ -16,6 +16,10 @@ beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
 });
 
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 describe('Notification tests', () => {
   it('Rendering Notification component without crashing', () => {
     const wrapper = shallow(<Notifications />);

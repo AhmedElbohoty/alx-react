@@ -9,6 +9,10 @@ beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
 });
 
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 describe('BodySectionWithMarginBottom tests', () => {
   it('Check if h2 is exist', () => {
     const wrapper = shallow(<BodySectionWithMarginBottom title="test title" />);
