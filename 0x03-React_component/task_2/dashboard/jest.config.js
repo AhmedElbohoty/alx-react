@@ -6,9 +6,9 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/__mocks__/imageMock.js',
     '\\.(css)$': '<rootDir>/__mocks__/styleMock.js',
 
-    'components/(.*)': ['<rootDir>/src/components/$1'],
-    'assets/(.*)': ['<rootDir>/src/assets/$1'],
-    'utils/(.*)': ['<rootDir>/src/utils/$1'],
-    'src/(.*)': ['<rootDir>/src/$1'],
+    '^components/(.*)$': '<rootDir>/src/components/$1',
+    '^assets/(.*)$': '<rootDir>/src/assets/$1',
+    '^utils/(.*)$': '<rootDir>/src/utils/$1',
+    '^src/(.*)$': '<rootDir>/src/$1',
   },
 };
