@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 import App from './App';
 import Notifications from '../Notifications/Notifications';
@@ -7,6 +8,10 @@ import Header from '../Header/Header';
 import Login from '../Login/Login';
 import CourseList from '../CourseList/CourseList';
 import Footer from '../Footer/Footer';
+
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
 
 describe('App tests', () => {
   test('Rendering App without crash', () => {

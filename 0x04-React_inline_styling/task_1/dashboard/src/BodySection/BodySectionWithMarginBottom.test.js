@@ -1,8 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 import BodySection from './BodySection';
 import BodySectionWithMarginBottom from './BodySectionWithMarginBottom';
+
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
 
 describe('BodySectionWithMarginBottom tests', () => {
   it('Check if h2 is exist', () => {

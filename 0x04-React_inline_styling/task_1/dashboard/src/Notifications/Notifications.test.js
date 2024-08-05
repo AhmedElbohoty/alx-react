@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 import Notifications from './Notifications';
 import NotificationItem from './NotificationItem';
@@ -10,6 +11,10 @@ const listNotifications = [
   { id: 2, type: 'urgent', value: 'New resume available' },
   { id: 3, type: 'urgent', html: getLatestNotification() },
 ];
+
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
 
 describe('Notification tests', () => {
   it('Rendering Notification component without crashing', () => {

@@ -1,7 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 import BodySection from './BodySection';
+
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
 
 describe('BodySection tests', () => {
   it('should render without crash', () => {
