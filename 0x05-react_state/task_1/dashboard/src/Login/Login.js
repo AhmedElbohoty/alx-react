@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
   formInput: {
     width: '200px',
     height: '32px',
+    padding: '8px',
     border: 'lightgray solid 1px',
     borderRadius: '4px',
   },
