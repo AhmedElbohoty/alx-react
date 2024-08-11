@@ -21,13 +21,6 @@ function Notifications({
     handleHideDrawer();
   }, [handleHideDrawer]);
 
-  const shouldComponentUpdate = (next) => {
-    return (
-      next.listNotifications.length > listNotifications.length ||
-      next.displayDrawer !== displayDrawer
-    );
-  };
-
   return (
     <div className={css(styles.notificationsCont)}>
       {!displayDrawer && (
