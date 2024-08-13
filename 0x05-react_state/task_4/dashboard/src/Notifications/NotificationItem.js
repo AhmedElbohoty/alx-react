@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 
-function NotificationItem({ html, type, value, markAsRead }) {
+function NotificationItem({
+  html,
+  value,
+  type = 'default',
+  markAsRead = () => {},
+}) {
   function getStyle(type) {
     if (type === 'default') return css(styles.default);
     if (type === 'urgent') return css(styles.urgent);
@@ -38,11 +43,6 @@ NotificationItem.propTypes = {
   }),
   markAsRead: PropTypes.func,
   id: PropTypes.number,
-};
-
-NotificationItem.defaultProps = {
-  type: 'default',
-  markAsRead: () => console.log('empty func'),
 };
 
 // Styles

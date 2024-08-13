@@ -23,7 +23,7 @@ const listNotifications = [
   { id: 3, type: 'urgent', html: getLatestNotification() },
 ];
 
-function App({ logOut, isLoggedIn }) {
+function App({ isLoggedIn = false, logOut = () => {} }) {
   const [displayDrawer, setDisplayDrawer] = useState(false);
 
   useEffect(() => {
@@ -85,11 +85,6 @@ function App({ logOut, isLoggedIn }) {
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
   logOut: PropTypes.func,
-};
-
-App.defaultProps = {
-  isLoggedIn: false,
-  logOut: () => {},
 };
 
 // Styles

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { StyleSheetTestUtils } from 'aphrodite';
 
 beforeEach(() => {
@@ -14,11 +14,11 @@ import Footer from './Footer';
 
 describe('Footer test', () => {
   it('Rendering Footer without crashing', () => {
-    shallow(<Footer />);
+    render(<Footer />);
   });
 
   it('Rendering Footer the text "Copyright"', () => {
-    const wrapper = shallow(<Footer />);
-    expect(wrapper.text()).toContain('Copyright');
+    render(<Footer />);
+    expect(screen.getByText(/Copyright/i)).toBeInTheDocument();
   });
 });

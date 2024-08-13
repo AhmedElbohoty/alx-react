@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 
@@ -7,82 +7,68 @@ import NotificationItem from './NotificationItem';
 import closeIcon from 'assets/close-icon.jpg';
 import NotificationItemShape from './NotificationItemShape';
 
-class Notifications extends Component {
-  constructor(props) {
-    super(props);
-
-    this.markAsRead = this.markAsRead.bind(this);
-    this.onClickClose = this.onClickClose.bind(this);
-  }
-
-  shouldComponentUpdate(next) {
-    return (
-      next.listNotifications.length > this.props.listNotifications.length ||
-      next.displayDrawer !== this.props.displayDrawer
-    );
-  }
-
-  markAsRead(id) {
+function Notifications({
+  displayDrawer = false,
+  listNotifications = [],
+  handleDisplayDrawer = () => {},
+  handleHideDrawer = () => {},
+}) {
+  function markAsRead(id) {
     console.log(`Notification ${id} has been marked as read`);
   }
 
-  onClickClose() {
+  function onClickClose() {
     console.log('Close button has been clicked');
-    this.props.handleHideDrawer();
+    handleHideDrawer();
   }
 
-  render() {
-    const { displayDrawer, listNotifications, handleDisplayDrawer } =
-      this.props;
+  return (
+    <div className={css(styles.notificationsCont)}>
+      {!displayDrawer && (
+        <div className={css(styles.menuItem)} onClick={handleDisplayDrawer}>
+          Your notifications
+        </div>
+      )}
+      {displayDrawer && (
+        <div className={css(styles.notifications)}>
+          <p className={css(styles.notificationsTitle)}>
+            Here is the list of notifications
+          </p>
+          <button
+            className={css(styles.notificationsClose)}
+            onClick={onClickClose}
+            aria-label="Close"
+          >
+            <img
+              className={css(styles.notificationsCloseImg)}
+              src={closeIcon}
+              alt="Close"
+            />
+          </button>
 
-    return (
-      <div className={css(styles.notificationsCont)}>
-        {!displayDrawer && (
-          <div className={css(styles.menuItem)} onClick={handleDisplayDrawer}>
-            Your notifications
-          </div>
-        )}
-        {displayDrawer && (
-          <div className={css(styles.notifications)}>
-            <p className={css(styles.notificationsTitle)}>
-              Here is the list of notifications
-            </p>
-            <button
-              className={css(styles.notificationsClose)}
-              onClick={this.onClickClose}
-              aria-label="Close"
-            >
-              <img
-                className={css(styles.notificationsCloseImg)}
-                src={closeIcon}
-                alt="Close"
-              />
-            </button>
+          <ul>
+            {listNotifications.length === 0 && (
+              <li key="no">No new notification for now</li>
+            )}
+            {listNotifications.length !== 0 &&
+              listNotifications.map((notif) => {
+                const { id, type, value, html } = notif;
 
-            <ul>
-              {listNotifications.length === 0 && (
-                <li key="no">No new notification for now</li>
-              )}
-              {listNotifications.length !== 0 &&
-                listNotifications.map((notif) => {
-                  const { id, type, value, html } = notif;
-
-                  return (
-                    <NotificationItem
-                      key={id}
-                      type={type}
-                      value={value}
-                      html={html}
-                      markAsRead={() => this.markAsRead(id)}
-                    />
-                  );
-                })}
-            </ul>
-          </div>
-        )}
-      </div>
-    );
-  }
+                return (
+                  <NotificationItem
+                    key={id}
+                    type={type}
+                    value={value}
+                    html={html}
+                    markAsRead={() => markAsRead(id)}
+                  />
+                );
+              })}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
 
 Notifications.propTypes = {
@@ -90,13 +76,6 @@ Notifications.propTypes = {
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
-};
-
-Notifications.defaultProps = {
-  displayDrawer: false,
-  listNotifications: [],
-  handleDisplayDrawer: () => {},
-  handleHideDrawer: () => {},
 };
 
 const opacityAnimation = {

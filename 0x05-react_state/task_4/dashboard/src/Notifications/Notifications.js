@@ -7,11 +7,11 @@ import closeIcon from 'assets/close-icon.jpg';
 import NotificationItemShape from './NotificationItemShape';
 
 function Notifications({
-  displayDrawer,
-  listNotifications,
-  handleDisplayDrawer,
-  handleHideDrawer,
-  markNotificationAsRead,
+  displayDrawer = false,
+  listNotifications = [],
+  handleDisplayDrawer = () => {},
+  handleHideDrawer = () => {},
+  markNotificationAsRead = () => {},
 }) {
   const onClickClose = useCallback(() => {
     console.log('Close button has been clicked');
@@ -73,14 +73,6 @@ Notifications.propTypes = {
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
   markNotificationAsRead: PropTypes.func,
-};
-
-Notifications.defaultProps = {
-  displayDrawer: false,
-  listNotifications: [],
-  handleDisplayDrawer: () => {},
-  handleHideDrawer: () => {},
-  markNotificationAsRead: () => {},
 };
 
 const opacityAnimation = {

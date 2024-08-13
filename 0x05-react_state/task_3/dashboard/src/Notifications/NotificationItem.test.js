@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import { StyleSheetTestUtils } from 'aphrodite';
+import NotificationItem from './NotificationItem';
 
 beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
@@ -11,40 +11,41 @@ afterEach(() => {
   StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
-import NotificationItem from './NotificationItem';
-
 describe('NotificationItem tests', () => {
-  it('Rendering without crashing', () => {
-    shallow(<NotificationItem type="default" value="test" />);
+  test('Rendering without crashing', () => {
+    render(<NotificationItem type="default" value="test" />);
   });
 
-  it('Rendering with type and value props', () => {
-    const wrapper = shallow(<NotificationItem type="default" value="test" />);
-    const li = wrapper.find('li');
+  test('Rendering with type and value props', () => {
+    render(<NotificationItem type="default" value="test" />);
+    const li = screen.getByRole('listitem');
 
-    expect(li.prop('data-notification-type')).toEqual('default');
-    expect(wrapper.text()).toEqual('test');
+    expect(li).toHaveAttribute('data-notification-type', 'default');
+    expect(screen.getByText('test')).toBeInTheDocument();
   });
 
-  it.skip('Rendering with with html prop', () => {
-    const htmlProp = { __html: '<u>test</u>' };
-    const wrapper = shallow(
-      <NotificationItem type="default" html={htmlProp} />
-    );
+  test('Rendering with html prop', () => {
+    const htmlProp = { __html: '<p>test</p>' };
+    render(<NotificationItem type="default" html={htmlProp} />);
 
-    expect(wrapper.html()).toEqual(
-      '<li class="Notifications-li">[object Object]</li>'
-    );
+    const li = screen.getByRole('listitem');
+    within(li).getByText('[object Object]');
   });
 });
 
 describe('markAsRead function tests', () => {
-  it('markAsRead function tests', () => {
-    const wrapper = shallow(<NotificationItem />);
+  test('markAsRead function tests', () => {
     const spy = jest.fn();
+    render(
+      <NotificationItem
+        type="default"
+        value="test item"
+        markAsRead={spy}
+        id={1}
+      />
+    );
+    fireEvent.click(screen.getByRole('listitem'));
 
-    wrapper.setProps({ value: 'test item', markAsRead: spy, id: 1 });
-    wrapper.find('li').props().onClick();
     expect(spy).toHaveBeenCalled();
     spy.mockRestore();
   });

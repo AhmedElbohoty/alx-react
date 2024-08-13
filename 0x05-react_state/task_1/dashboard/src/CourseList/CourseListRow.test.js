@@ -1,6 +1,9 @@
+// CourseListRow.test.js
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { StyleSheetTestUtils } from 'aphrodite';
+
+import CourseListRow from './CourseListRow';
 
 beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
@@ -10,43 +13,54 @@ afterEach(() => {
   StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
-import CourseListRow from './CourseListRow';
-
 describe('CourseListRow tests', () => {
-  test('Test the component renders one cell with colspan = 2 when textSecondCell does not exist', () => {
-    const wrapper = shallow(
-      <CourseListRow isHeader={true} textFirstCell="Text first cell" />
+  test('renders one cell with colspan = 2 when textSecondCell does not exist', () => {
+    render(
+      <table>
+        <tbody>
+          <CourseListRow isHeader={true} textFirstCell="Text first cell" />
+        </tbody>
+      </table>
     );
-    const ths = wrapper.find('th');
-    expect(ths.text()).toBe('Text first cell');
-    expect(ths.prop('colSpan')).toBe(2);
+
+    const th = screen.getByRole('columnheader');
+    expect(th).toHaveTextContent('Text first cell');
+    expect(th).toHaveAttribute('colspan', '2');
   });
 
-  test('Test the component renders two cells when textSecondCell is present', () => {
-    const wrapper = shallow(
-      <CourseListRow
-        isHeader={true}
-        textFirstCell="Text first cell"
-        textSecondCell="Text second cell"
-      />
+  test('renders two cells when textSecondCell is present', () => {
+    render(
+      <table>
+        <tbody>
+          <CourseListRow
+            isHeader={true}
+            textFirstCell="Text first cell"
+            textSecondCell="Text second cell"
+          />
+        </tbody>
+      </table>
     );
-    const ths = wrapper.find('th');
 
-    expect(ths.at(0).text()).toBe('Text first cell');
-    expect(ths.at(1).text()).toBe('Text second cell');
+    const ths = screen.getAllByRole('columnheader');
+    expect(ths[0]).toHaveTextContent('Text first cell');
+    expect(ths[1]).toHaveTextContent('Text second cell');
   });
 
-  test('test the component renders correctly two td elements within a tr element', () => {
-    const wrapper = shallow(
-      <CourseListRow
-        isHeader={false}
-        textFirstCell="Text first cell"
-        textSecondCell="Text second cell"
-      />
+  test('renders two td elements within a tr element', () => {
+    render(
+      <table>
+        <tbody>
+          <CourseListRow
+            isHeader={false}
+            textFirstCell="Text first cell"
+            textSecondCell="Text second cell"
+          />
+        </tbody>
+      </table>
     );
 
-    const tds = wrapper.find('td');
-    expect(tds.at(0).text()).toBe('Text first cell');
-    expect(tds.at(1).text()).toBe('Text second cell');
+    const tds = screen.getAllByRole('cell');
+    expect(tds[0]).toHaveTextContent('Text first cell');
+    expect(tds[1]).toHaveTextContent('Text second cell');
   });
 });

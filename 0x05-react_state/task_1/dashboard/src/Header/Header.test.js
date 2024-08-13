@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { StyleSheetTestUtils } from 'aphrodite';
 
 beforeEach(() => {
@@ -14,12 +14,12 @@ import Header from './Header';
 
 describe('Header tests', () => {
   it('Rendering Header without crashing', () => {
-    shallow(<Header />);
+    render(<Header />);
   });
 
   it('Rendering Header img and h1 tags', () => {
-    const wrapper = shallow(<Header />);
-    expect(wrapper.find('img')).toHaveLength(1);
-    expect(wrapper.find('h1')).toHaveLength(1);
+    render(<Header />);
+    expect(screen.getByRole('img')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
   });
 });

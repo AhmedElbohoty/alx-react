@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 
@@ -23,87 +23,68 @@ const listNotifications = [
   { id: 3, type: 'urgent', html: getLatestNotification() },
 ];
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+function App({ isLoggedIn = false, logOut = () => {} }) {
+  const [displayDrawer, setDisplayDrawer] = useState(false);
 
-    this.state = { displayDrawer: false };
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeydown);
 
-    this.handleKeydown = this.handleKeydown.bind(this);
-    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
-    this.handleHideDrawer = this.handleHideDrawer.bind(this);
-  }
+    return () => document.removeEventListener('keydown', handleKeydown);
+  }, []);
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeydown);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeydown);
-  }
-
-  handleKeydown(e) {
+  function handleKeydown(e) {
     if (e.ctrlKey && e.key === 'h') {
       alert('Logging you out');
-      this.props.logOut();
+      logOut();
     }
   }
 
-  handleDisplayDrawer() {
-    this.setState({ displayDrawer: true });
+  function handleDisplayDrawer() {
+    setDisplayDrawer(true);
   }
 
-  handleHideDrawer() {
-    this.setState({ displayDrawer: false });
+  function handleHideDrawer() {
+    setDisplayDrawer(false);
   }
 
-  render() {
-    const { isLoggedIn } = this.props;
+  return (
+    <Fragment>
+      <Notifications
+        displayDrawer={displayDrawer}
+        listNotifications={listNotifications}
+        handleDisplayDrawer={handleDisplayDrawer}
+        handleHideDrawer={handleHideDrawer}
+      />
+      <div className={`${css(styles.App)}`}>
+        <Header />
 
-    return (
-      <Fragment>
-        <Notifications
-          displayDrawer={this.state.displayDrawer}
-          listNotifications={listNotifications}
-          handleDisplayDrawer={this.handleDisplayDrawer}
-          handleHideDrawer={this.handleHideDrawer}
-        />
-        <div className={`${css(styles.App)}`}>
-          <Header />
-
-          <div className={`${css(styles.AppBody)}`}>
-            {!isLoggedIn && (
-              <BodySectionWithMarginBottom title="Log in to continue">
-                <Login />
-              </BodySectionWithMarginBottom>
-            )}
-            {isLoggedIn && (
-              <BodySectionWithMarginBottom title="Course list">
-                <CourseList listCourses={listCourses} />
-              </BodySectionWithMarginBottom>
-            )}
-            <BodySection title="News from the school">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Perspiciatis at tempora odio.
-              </p>
-            </BodySection>
-          </div>
-          <Footer />
+        <div className={`${css(styles.AppBody)}`}>
+          {!isLoggedIn && (
+            <BodySectionWithMarginBottom title="Log in to continue">
+              <Login />
+            </BodySectionWithMarginBottom>
+          )}
+          {isLoggedIn && (
+            <BodySectionWithMarginBottom title="Course list">
+              <CourseList listCourses={listCourses} />
+            </BodySectionWithMarginBottom>
+          )}
+          <BodySection title="News from the school">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Perspiciatis at tempora odio.
+            </p>
+          </BodySection>
         </div>
-      </Fragment>
-    );
-  }
+        <Footer />
+      </div>
+    </Fragment>
+  );
 }
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
   logOut: PropTypes.func,
-};
-
-App.defaultProps = {
-  isLoggedIn: false,
-  logOut: () => {},
 };
 
 // styles

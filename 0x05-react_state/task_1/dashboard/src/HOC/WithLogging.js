@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 
 function WithLogging(WrappedComponent) {
   const compName =
@@ -6,18 +6,14 @@ function WithLogging(WrappedComponent) {
 
   WithLogging.displayName = `WithLogging(${compName})`;
 
-  return class extends Component {
-    componentDidMount() {
+  return (props) => {
+    useEffect(() => {
       console.log(`Component ${compName} is mounted`);
-    }
 
-    componentWillUnmount() {
-      console.log(`Component ${compName} is going to unmount`);
-    }
+      return () => console.log(`Component ${compName} is going to unmount`);
+    }, []);
 
-    render() {
-      return <WrappedComponent {...this.props} />;
-    }
+    return <WrappedComponent {...props} />;
   };
 }
 

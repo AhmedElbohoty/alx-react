@@ -1,8 +1,8 @@
 // CourseList/CourseList.test.js
 import React from 'react';
-import { shallow } from 'enzyme';
-import CourseList from './CourseList';
+import { render, screen } from '@testing-library/react';
 import { StyleSheetTestUtils } from 'aphrodite';
+import CourseList from './CourseList';
 
 beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
@@ -20,46 +20,36 @@ const listCourses = [
 
 describe('CourseList tests', () => {
   test('Rendering CourseList without crashing', () => {
-    const wrapper = shallow(<CourseList />);
+    render(<CourseList />);
 
-    expect(wrapper.exists()).toBe(true);
+    expect(screen.getByText('Available courses')).toBeInTheDocument();
   });
 
-  test('renders the 5 different rows', () => {
-    const wrapper = shallow(<CourseList listCourses={listCourses} />);
+  test('renders the correct rows', () => {
+    render(<CourseList listCourses={listCourses} />);
 
-    const rows = wrapper.find('CourseListRow');
+    expect(screen.getAllByRole('row')).toHaveLength(5);
 
-    expect(rows.length).toBe(5);
-
-    expect(rows.at(0).prop('textFirstCell')).toBe('Available courses');
-
-    expect(rows.at(1).prop('textFirstCell')).toBe('Course name');
-    expect(rows.at(1).prop('textSecondCell')).toBe('Credit');
-
-    expect(rows.at(2).prop('textFirstCell')).toBe('ES6');
-    expect(rows.at(2).prop('textSecondCell')).toBe(60);
-
-    expect(rows.at(3).prop('textFirstCell')).toBe('Webpack');
-    expect(rows.at(3).prop('textSecondCell')).toBe(20);
-
-    expect(rows.at(4).prop('textFirstCell')).toBe('React');
-    expect(rows.at(4).prop('textSecondCell')).toBe(40);
+    expect(screen.getByText('Available courses')).toBeInTheDocument();
+    expect(screen.getByText('Course name')).toBeInTheDocument();
+    expect(screen.getByText('Credit')).toBeInTheDocument();
+    expect(screen.getByText('ES6')).toBeInTheDocument();
+    expect(screen.getByText(60)).toBeInTheDocument();
+    expect(screen.getByText('Webpack')).toBeInTheDocument();
+    expect(screen.getByText(20)).toBeInTheDocument();
+    expect(screen.getByText('React')).toBeInTheDocument();
+    expect(screen.getByText(40)).toBeInTheDocument();
   });
 
   test('Renders no rows - check label', () => {
-    const wrapper = shallow(<CourseList listCourses={[]} />);
+    render(<CourseList listCourses={[]} />);
 
-    const rows = wrapper.find('CourseListRow');
-
-    expect(rows.at(2).prop('textFirstCell')).toBe('No course available yet');
+    expect(screen.getByText('No course available yet')).toBeInTheDocument();
   });
 
   test('Renders no rows - check counts', () => {
-    const wrapper = shallow(<CourseList listCourses={[]} />);
+    render(<CourseList listCourses={[]} />);
 
-    const rows = wrapper.find('CourseListRow');
-
-    expect(rows.length).toBe(3);
+    expect(screen.getAllByRole('row')).toHaveLength(3);
   });
 });

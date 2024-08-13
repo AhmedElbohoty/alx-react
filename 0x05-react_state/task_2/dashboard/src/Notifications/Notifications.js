@@ -7,10 +7,10 @@ import closeIcon from 'assets/close-icon.jpg';
 import NotificationItemShape from './NotificationItemShape';
 
 function Notifications({
-  displayDrawer,
-  listNotifications,
-  handleDisplayDrawer,
-  handleHideDrawer,
+  displayDrawer = false,
+  listNotifications = [],
+  handleDisplayDrawer = () => {},
+  handleHideDrawer = () => {},
 }) {
   const markAsRead = useCallback((id) => {
     console.log(`Notification ${id} has been marked as read`);
@@ -75,13 +75,6 @@ Notifications.propTypes = {
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
-};
-
-Notifications.defaultProps = {
-  displayDrawer: false,
-  listNotifications: [],
-  handleDisplayDrawer: () => {},
-  handleHideDrawer: () => {},
 };
 
 const opacityAnimation = {

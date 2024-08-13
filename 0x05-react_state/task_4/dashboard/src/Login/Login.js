@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 
-function Login({ logIn }) {
+function Login({ logIn = () => {} }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [enableSubmit, setEnableSubmit] = useState(false);
@@ -118,10 +118,6 @@ const styles = StyleSheet.create({
     },
   },
 });
-
-Login.defaultProps = {
-  logIn: () => {},
-};
 
 Login.propTypes = {
   logIn: PropTypes.func,

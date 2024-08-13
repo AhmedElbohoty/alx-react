@@ -11,7 +11,11 @@ const headerStyle = {
   backgroundColor: '#deb5b545',
 };
 
-function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
+function CourseListRow({
+  isHeader = false,
+  textFirstCell,
+  textSecondCell = null,
+}) {
   const [checked, setChecked] = useState(false);
 
   function handleChecked() {
@@ -60,11 +64,6 @@ CourseListRow.propTypes = {
   isHeader: PropTypes.bool,
   textFirstCell: PropTypes.string.isRequired,
   textSecondCell: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
-
-CourseListRow.defaultProps = {
-  isHeader: false,
-  textSecondCell: null,
 };
 
 // styles

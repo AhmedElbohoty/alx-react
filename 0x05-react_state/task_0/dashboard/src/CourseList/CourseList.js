@@ -5,7 +5,7 @@ import { StyleSheet, css } from 'aphrodite';
 import CourseListRow from './CourseListRow';
 import CourseShape from './CourseShape';
 
-function CourseList({ listCourses }) {
+function CourseList({ listCourses = [] }) {
   let elements = [
     <CourseListRow key="no" textFirstCell="No course available yet" />,
   ];
@@ -37,10 +37,6 @@ function CourseList({ listCourses }) {
 
 CourseList.propTypes = {
   listCourses: PropTypes.arrayOf(CourseShape),
-};
-
-CourseList.defaultProps = {
-  listCourses: [],
 };
 
 // styles

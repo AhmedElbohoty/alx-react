@@ -1,13 +1,9 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { StyleSheetTestUtils } from 'aphrodite';
 
 import App from './App';
-import Notifications from '../Notifications/Notifications';
-import Header from '../Header/Header';
-import Login from '../Login/Login';
-import CourseList from '../CourseList/CourseList';
-import Footer from '../Footer/Footer';
 
 beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
@@ -19,40 +15,43 @@ afterEach(() => {
 
 describe('App tests', () => {
   test('Rendering App without crash', () => {
-    const wrapper = shallow(<App />);
-
-    expect(wrapper.find(Notifications)).toHaveLength(1);
-    expect(wrapper.find(Header)).toHaveLength(1);
-    expect(wrapper.find(Login)).toHaveLength(1);
-    expect(wrapper.find(Footer)).toHaveLength(1);
+    render(<App />);
   });
 
   test('Rendering App with login', () => {
-    const wrapper = shallow(<App isLoggedIn={false} />);
+    render(<App isLoggedIn={false} />);
 
-    expect(wrapper.find(Login)).toHaveLength(1);
+    expect(
+      screen.getByText('Login to access the full dashboard')
+    ).toBeInTheDocument();
   });
 
   test('Rendering App with CourseList', () => {
-    const wrapper = shallow(<App isLoggedIn={true} />);
+    render(<App isLoggedIn={true} />);
 
-    expect(wrapper.find(Login)).toHaveLength(0);
-    expect(wrapper.find(CourseList)).toHaveLength(1);
+    expect(
+      screen.queryByText('Login to access the full dashboard')
+    ).not.toBeInTheDocument();
+    expect(screen.getByText('Available courses')).toBeInTheDocument();
   });
 });
 
 describe('App state', () => {
-  it('The default displayDrawer is false', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.state().displayDrawer).toEqual(false);
+  test('The default displayDrawer is false', () => {
+    const screen = render(<App />);
+
+    const notif = screen.queryByText('Here is the list of notifications');
+    expect(notif).not.toBeInTheDocument();
   });
 
-  it('When user call handleDisplayDrawer, the default is true', () => {
-    const wrapper = shallow(<App />);
-    const instance = wrapper.instance();
+  test('When user calls handleDisplayDrawer, displayDrawer is true', async () => {
+    const screen = render(<App />);
 
-    instance.handleDisplayDrawer();
-    expect(wrapper.state().displayDrawer).toEqual(true);
+    const button = screen.getByText('Your notifications');
+    await userEvent.click(button);
+
+    const notif = screen.queryByText('Here is the list of notifications');
+    expect(notif).toBeInTheDocument();
   });
 });
 
@@ -69,24 +68,21 @@ describe('Handle keydown tests', () => {
     alertSpy.mockRestore();
   });
 
-  it('When pressing Control + h', () => {
-    mount(<App isLoggedIn={true} logOut={logOutMock} />);
+  test('When pressing Control + h', () => {
+    render(<App isLoggedIn={true} logOut={logOutMock} />);
 
-    const event = new KeyboardEvent('keydown', { ctrlKey: true, key: 'h' });
-    document.dispatchEvent(event);
+    fireEvent.keyDown(document, { ctrlKey: true, key: 'h' });
 
     expect(logOutMock).toHaveBeenCalled();
     expect(alertSpy).toHaveBeenCalledWith('Logging you out');
   });
 
-  it('When Control or h keys are pressed separately', () => {
-    mount(<App isLoggedIn={true} logOut={logOutMock} />);
+  test('When Control or h keys are pressed separately', () => {
+    render(<App isLoggedIn={true} logOut={logOutMock} />);
 
     // Simulate keydown event for Control key only
-    const eventH = new KeyboardEvent('keydown', { key: 'Control' });
-    const eventCtrl = new KeyboardEvent('keydown', { key: 'h' });
-    document.dispatchEvent(eventH);
-    document.dispatchEvent(eventCtrl);
+    fireEvent.keyDown(document, { key: 'Control' });
+    fireEvent.keyDown(document, { key: 'h' });
 
     expect(logOutMock).not.toHaveBeenCalled();
     expect(alertSpy).not.toHaveBeenCalled();

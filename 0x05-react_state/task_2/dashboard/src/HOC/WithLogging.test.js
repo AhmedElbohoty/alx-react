@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, unmountComponentAtNode } from '@testing-library/react';
 import { jest } from '@jest/globals';
 import { StyleSheetTestUtils } from 'aphrodite';
 
@@ -23,10 +23,10 @@ describe('WithLogging HOC Tests', () => {
 
   it('should log mount and unmount for pure HTML element', () => {
     const HOCComp = WithLogging(() => <p />);
-    const wrapper = shallow(<HOCComp />);
+    const { unmount } = render(<HOCComp />);
 
     expect(mockLog).toHaveBeenCalledWith('Component Component is mounted');
-    wrapper.unmount();
+    unmount();
     expect(mockLog).toHaveBeenCalledWith(
       'Component Component is going to unmount'
     );
@@ -34,10 +34,10 @@ describe('WithLogging HOC Tests', () => {
 
   it('should log mount and unmount for Login component', () => {
     const HOCComp = WithLogging(Login);
-    const wrapper = shallow(<HOCComp />);
+    const { unmount } = render(<HOCComp />);
 
     expect(mockLog).toHaveBeenCalledWith('Component Login is mounted');
-    wrapper.unmount();
+    unmount();
     expect(mockLog).toHaveBeenCalledWith('Component Login is going to unmount');
   });
 });

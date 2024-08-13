@@ -2,34 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 
-class NotificationItem extends React.PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { html, type, value, markAsRead } = this.props;
-
-    if (html) {
-      return (
-        <li
-          className={`${getStyle(type)} ${css(styles.li)}`}
-          dangerouslySetInnerHTML={{ __html: html }}
-          onClick={markAsRead}
-        ></li>
-      );
-    }
-
+function NotificationItem({
+  html,
+  type = 'default',
+  value,
+  markAsRead = () => {},
+}) {
+  if (html) {
     return (
       <li
         className={`${getStyle(type)} ${css(styles.li)}`}
-        data-notification-type={type}
+        dangerouslySetInnerHTML={{ __html: html }}
         onClick={markAsRead}
-      >
-        {value}
-      </li>
+      ></li>
     );
   }
+
+  return (
+    <li
+      className={`${getStyle(type)} ${css(styles.li)}`}
+      data-notification-type={type}
+      onClick={markAsRead}
+    >
+      {value}
+    </li>
+  );
 }
 
 NotificationItem.propTypes = {
@@ -40,11 +37,6 @@ NotificationItem.propTypes = {
   }),
   markAsRead: PropTypes.func,
   id: PropTypes.number,
-};
-
-NotificationItem.defaultProps = {
-  type: 'default',
-  markAsRead: () => console.log('empty func'),
 };
 
 // Styles
