@@ -75,8 +75,8 @@ class App extends React.Component {
               </p>
             </BodySection>
           </div>
-          <Footer />
         </div>
+        <Footer />
       </Fragment>
     );
   }

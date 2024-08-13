@@ -45,6 +45,9 @@ describe('App state', () => {
   });
 
   test('When user calls handleDisplayDrawer, displayDrawer is true', async () => {
+    // When use enzyme, we will need to use
+    // .instance().handleDisplayDrawer()
+    // .instance().handleHideDrawer()
     const screen = render(<App />);
 
     const button = screen.getByText('Your notifications');

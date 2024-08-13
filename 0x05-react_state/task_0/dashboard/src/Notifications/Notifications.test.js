@@ -18,6 +18,8 @@ afterEach(() => {
   StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
+// Test "handleDisplayDrawer", "handleHideDrawer"]
+
 describe('Notification tests', () => {
   it('Rendering Notification component without crashing', () => {
     render(<Notifications />);

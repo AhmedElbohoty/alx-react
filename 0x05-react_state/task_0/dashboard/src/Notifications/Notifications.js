@@ -17,11 +17,6 @@ function Notifications({
     console.log(`Notification ${id} has been marked as read`);
   }
 
-  function onClickClose() {
-    console.log('Close button has been clicked');
-    handleHideDrawer();
-  }
-
   return (
     <div className={css(styles.notificationsCont)}>
       {!displayDrawer && (
@@ -36,7 +31,7 @@ function Notifications({
           </p>
           <button
             className={css(styles.notificationsClose)}
-            onClick={onClickClose}
+            onClick={handleHideDrawer}
             aria-label="Close"
           >
             <img
