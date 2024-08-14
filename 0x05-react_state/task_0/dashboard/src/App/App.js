@@ -24,8 +24,9 @@ const listNotifications = [
 ];
 
 function App({ isLoggedIn = false, logOut = () => {} }) {
-  // With class version: this.state = { displayDrawer: false };
-  // With class version: { displayDrawer } = this.state
+  // With class version:
+  // this.state = { displayDrawer: false };
+  // { displayDrawer } = this.state
   const [displayDrawer, setDisplayDrawer] = useState(false);
 
   useEffect(() => {
