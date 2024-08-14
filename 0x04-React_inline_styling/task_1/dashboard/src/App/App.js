@@ -76,6 +76,7 @@ class App extends React.Component {
             </BodySection>
           </div>
         </div>
+        {/* ["body: {", "footer: {"]  */}
         <Footer />
       </Fragment>
     );
