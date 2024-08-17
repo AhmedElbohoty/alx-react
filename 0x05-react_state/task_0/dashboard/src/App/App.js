@@ -24,6 +24,8 @@ const listNotifications = [
 ];
 
 function App({ isLoggedIn = false, logOut = () => {} }) {
+  // In class version we will use:
+  // super(props)
   // With class version:
   // this.state = { displayDrawer: false };
   // { displayDrawer } = this.state
