@@ -24,11 +24,6 @@ const listNotifications = [
 ];
 
 function App({ isLoggedIn = false, logOut = () => {} }) {
-  // In class version we will use:
-  // super(props)
-  // With class version:
-  // this.state = { displayDrawer: false };
-  // { displayDrawer } = this.state
   const [displayDrawer, setDisplayDrawer] = useState(false);
 
   useEffect(() => {
@@ -104,3 +99,81 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
+// Class version
+// class App extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       displayDrawer: false,
+//     };
+
+//     this.handleKeydown = this.handleKeydown.bind(this);
+//     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
+//     this.handleHideDrawer = this.handleHideDrawer.bind(this);
+//   }
+
+//   componentDidMount() {
+//     document.addEventListener('keydown', this.handleKeydown);
+//   }
+
+//   componentWillUnmount() {
+//     document.removeEventListener('keydown', this.handleKeydown);
+//   }
+
+//   handleKeydown(e) {
+//     if (e.ctrlKey && e.key === 'h') {
+//       alert('Logging you out');
+//       this.props.logOut();
+//     }
+//   }
+
+//   handleDisplayDrawer() {
+//     this.setState({ displayDrawer: true });
+//   }
+
+//   handleHideDrawer() {
+//     this.setState({ displayDrawer: false });
+//   }
+
+//   render() {
+//     const { isLoggedIn } = this.props;
+//     const { displayDrawer } = this.state;
+
+//     return (
+//       <>
+//         <Notifications
+//           displayDrawer={displayDrawer}
+//           listNotifications={listNotifications}
+//           handleDisplayDrawer={this.handleDisplayDrawer}
+//           handleHideDrawer={this.handleHideDrawer}
+//         />
+//         <div className={`${css(styles.App)}`}>
+//           <Header />
+
+//           <div className={`${css(styles.AppBody)}`}>
+//             {!isLoggedIn && (
+//               <BodySectionWithMarginBottom title="Log in to continue">
+//                 <Login />
+//               </BodySectionWithMarginBottom>
+//             )}
+//             {isLoggedIn && (
+//               <BodySectionWithMarginBottom title="Course list">
+//                 <CourseList listCourses={listCourses} />
+//               </BodySectionWithMarginBottom>
+//             )}
+//             <BodySection title="News from the school">
+//               <p>
+//                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
+//                 Perspiciatis at tempora odio.
+//               </p>
+//             </BodySection>
+//           </div>
+//           <Footer />
+//         </div>
+//       </>
+//     );
+//   }
+// }
+
+// export default App;

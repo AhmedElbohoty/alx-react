@@ -151,3 +151,76 @@ const styles = StyleSheet.create({
 });
 
 export default Notifications;
+
+// Class version
+// handleDisplayDrawer: () => {}
+// class Notifications extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.markAsRead = this.markAsRead.bind(this);
+//   }
+
+//   markAsRead(id) {
+//     console.log(`Notification ${id} has been marked as read`);
+//   }
+
+//   render() {
+//     const {
+//       displayDrawer,
+//       listNotifications,
+//       handleDisplayDrawer,
+//       handleHideDrawer,
+//     } = this.props;
+
+//     return (
+//       <div className={css(styles.notificationsCont)}>
+//         {!displayDrawer && (
+//           <div
+//             className={css(styles.menuItem)}
+//             onClick={handleDisplayDrawer}
+//           >
+//             Your notifications
+//           </div>
+//         )}
+//         {displayDrawer && (
+//           <div className={css(styles.notifications)}>
+//             <p className={css(styles.notificationsTitle)}>
+//               Here is the list of notifications
+//             </p>
+//             <button
+//               className={css(styles.notificationsClose)}
+//               onClick={handleHideDrawer}
+//               aria-label="Close"
+//             >
+//               <img
+//                 className={css(styles.notificationsCloseImg)}
+//                 src={closeIcon}
+//                 alt="Close"
+//               />
+//             </button>
+
+//             <ul>
+//               {listNotifications.length === 0 && (
+//                 <li key="no">No new notification for now</li>
+//               )}
+//               {listNotifications.length !== 0 &&
+//                 listNotifications.map((notif) => {
+//                   const { id, type, value, html } = notif;
+
+//                   return (
+//                     <NotificationItem
+//                       key={id}
+//                       type={type}
+//                       value={value}
+//                       html={html}
+//                       markAsRead={() => this.markAsRead(id)}
+//                     />
+//                   );
+//                 })}
+//             </ul>
+//           </div>
+//         )}
+//       </div>
+//     );
+//   }
+// }
