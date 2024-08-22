@@ -21,7 +21,7 @@ describe('WithLogging HOC Tests', () => {
     mockLog.mockClear();
   });
 
-  it('should log mount and unmount for pure HTML element', () => {
+  test('should log mount and unmount for pure HTML element', () => {
     const HOCComp = WithLogging(() => <p />);
     const { unmount } = render(<HOCComp />);
 
@@ -32,7 +32,7 @@ describe('WithLogging HOC Tests', () => {
     );
   });
 
-  it('should log mount and unmount for Login component', () => {
+  test('should log mount and unmount for Login component', () => {
     const HOCComp = WithLogging(Login);
     const { unmount } = render(<HOCComp />);
 

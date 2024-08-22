@@ -4,11 +4,11 @@ import { shallow } from 'enzyme';
 import NotificationItem from './NotificationItem';
 
 describe('NotificationItem tests', () => {
-  it('Rendering without crashing', () => {
+  test('Rendering without crashing', () => {
     shallow(<NotificationItem type="default" value="test" />);
   });
 
-  it('Rendering with type and value props', () => {
+  test('Rendering with type and value props', () => {
     const wrapper = shallow(<NotificationItem type="default" value="test" />);
     const li = wrapper.find('li');
 
@@ -29,7 +29,7 @@ describe('NotificationItem tests', () => {
 });
 
 describe('markAsRead function tests', () => {
-  it('markAsRead function tests', () => {
+  test('markAsRead function tests', () => {
     const wrapper = shallow(<NotificationItem />);
     const spy = jest.fn();
 

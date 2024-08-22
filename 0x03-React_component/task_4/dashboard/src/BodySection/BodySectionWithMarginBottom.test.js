@@ -5,7 +5,7 @@ import BodySection from './BodySection';
 import BodySectionWithMarginBottom from './BodySectionWithMarginBottom';
 
 describe('BodySectionWithMarginBottom tests', () => {
-  it('Check if h2 is exist', () => {
+  test('Check if h2 is exist', () => {
     const wrapper = shallow(<BodySectionWithMarginBottom title="test title" />);
 
     expect(wrapper.find(BodySection)).toHaveLength(1);

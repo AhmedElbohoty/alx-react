@@ -21,19 +21,19 @@ afterEach(() => {
 });
 
 describe('Notification tests', () => {
-  it('Rendering Notification component without crashing', () => {
+  test('Rendering Notification component without crashing', () => {
     const wrapper = shallow(<Notifications />);
 
     expect(wrapper).toBeDefined();
   });
 
-  it('ul is rendered', () => {
+  test('ul is rendered', () => {
     const wrapper = shallow(<Notifications />);
 
     expect(wrapper.find('ul')).toBeDefined();
   });
 
-  it('Three list items are rendered', () => {
+  test('Three list items are rendered', () => {
     const wrapper = shallow(
       <Notifications
         displayDrawer={true}
@@ -44,7 +44,7 @@ describe('Notification tests', () => {
     expect(wrapper.find(NotificationItem)).toHaveLength(3);
   });
 
-  it('No list items are rendered', () => {
+  test('No list items are rendered', () => {
     const wrapper = shallow(
       <Notifications displayDrawer={true} listNotifications={[]} />
     );
@@ -52,20 +52,20 @@ describe('Notification tests', () => {
     expect(wrapper.find(NotificationItem)).toHaveLength(0);
   });
 
-  it('Rendering correct text', () => {
+  test('Rendering correct text', () => {
     const wrapper = shallow(<Notifications displayDrawer={true} />);
     const p = wrapper.find('p');
 
     expect(p.prop('children')).toBe('Here is the list of notifications');
   });
 
-  it('Rendering Notification without drawer', () => {
+  test('Rendering Notification without drawer', () => {
     const wrapper = shallow(<Notifications displayDrawer={false} />);
 
     expect(wrapper.find('.Notifications').exists()).toBe(false);
   });
 
-  it('Rendering Notification with drawer', () => {
+  test('Rendering Notification with drawer', () => {
     const wrapper = shallow(<Notifications displayDrawer={true} />);
 
     const p = wrapper.find('p');
@@ -80,7 +80,7 @@ describe('Component re-rendering tests', () => {
     { id: 2, type: 'default', value: 'value 2', html: null },
   ];
 
-  it('should not rerender with the same list', () => {
+  test('should not rerender with the same list', () => {
     const wrapper = shallow(
       <Notifications displayDrawer={true} listNotifications={notifications} />
     );
@@ -93,7 +93,7 @@ describe('Component re-rendering tests', () => {
     expect(shouldUpdate).toBe(false);
   });
 
-  it('should rerender with a longer list', () => {
+  test('should rerender with a longer list', () => {
     const wrapper = shallow(
       <Notifications displayDrawer={true} listNotifications={notifications} />
     );

@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import App from 'src/App/App';
 
 describe('App tests', () => {
-  it('should render a div with the class App-header', () => {
+  test('should render a div with the class App-header', () => {
     const wrapper = shallow(<App />);
 
     expect(wrapper.find('.App-header')).toBeDefined();

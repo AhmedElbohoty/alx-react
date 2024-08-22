@@ -5,25 +5,25 @@ import Notifications from './Notifications';
 import NotificationItem from './NotificationItem';
 
 describe('Notification tests', () => {
-  it('renders Notification component without crashing', () => {
+  test('renders Notification component without crashing', () => {
     const wrapper = shallow(<Notifications />);
 
     expect(wrapper).toBeDefined();
   });
 
-  it('ul is rendered', () => {
+  test('ul is rendered', () => {
     const wrapper = shallow(<Notifications />);
 
     expect(wrapper.find('ul')).toBeDefined();
   });
 
-  it('Three list items are rendered', () => {
+  test('Three list items are rendered', () => {
     const wrapper = shallow(<Notifications />);
 
     expect(wrapper.find(NotificationItem)).toHaveLength(3);
   });
 
-  it('renders correct text', () => {
+  test('renders correct text', () => {
     const wrapper = shallow(<Notifications />);
     const p = wrapper.find('p');
 

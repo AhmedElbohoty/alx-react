@@ -4,25 +4,25 @@ import { shallow } from 'enzyme';
 import App from './App';
 
 describe('App tests', () => {
-  it('renders without crashing', () => {
+  test('renders without crashing', () => {
     const component = shallow(<App />);
 
     expect(component).toBeDefined();
   });
 
-  it('should render a div with the class App-header', () => {
+  test('should render a div with the class App-header', () => {
     const component = shallow(<App />);
 
     expect(component.find('.App-header')).toBeDefined();
   });
 
-  it('should render a div with the class App-body', () => {
+  test('should render a div with the class App-body', () => {
     const component = shallow(<App />);
 
     expect(component.find('.App-body')).toBeDefined();
   });
 
-  it('should render a div with the class App-footer', () => {
+  test('should render a div with the class App-footer', () => {
     const component = shallow(<App />);
 
     expect(component.find('.App-footer')).toBeDefined();

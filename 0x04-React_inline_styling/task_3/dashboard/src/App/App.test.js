@@ -54,7 +54,7 @@ describe('Handle keydown tests', () => {
     alertSpy.mockRestore();
   });
 
-  it('When pressing Control + h', () => {
+  test('When pressing Control + h', () => {
     mount(<App isLoggedIn={true} logOut={logOutMock} />);
 
     const event = new KeyboardEvent('keydown', { ctrlKey: true, key: 'h' });
@@ -64,7 +64,7 @@ describe('Handle keydown tests', () => {
     expect(alertSpy).toHaveBeenCalledWith('Logging you out');
   });
 
-  it('When Control or h keys are pressed separately', () => {
+  test('When Control or h keys are pressed separately', () => {
     mount(<App isLoggedIn={true} logOut={logOutMock} />);
 
     // Simulate keydown event for Control key only

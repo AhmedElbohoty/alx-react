@@ -19,17 +19,17 @@ afterEach(() => {
 });
 
 describe('Notification tests', () => {
-  it('Rendering Notification component without crashing', () => {
+  test('Rendering Notification component without crashing', () => {
     render(<Notifications />);
   });
 
-  it('ul is rendered', () => {
+  test('ul is rendered', () => {
     render(<Notifications displayDrawer={true} />);
     const ulElement = screen.getByRole('list');
     expect(ulElement).toBeInTheDocument();
   });
 
-  it('Three list items are rendered', () => {
+  test('Three list items are rendered', () => {
     render(
       <Notifications
         displayDrawer={true}
@@ -40,7 +40,7 @@ describe('Notification tests', () => {
     expect(notificationItems).toHaveLength(3);
   });
 
-  it('No list items are rendered', () => {
+  test('No list items are rendered', () => {
     const screen = render(
       <Notifications displayDrawer={true} listNotifications={[]} />
     );
@@ -48,13 +48,13 @@ describe('Notification tests', () => {
     expect(noNotif).toBeInTheDocument();
   });
 
-  it('Rendering correct text', () => {
+  test('Rendering correct text', () => {
     render(<Notifications displayDrawer={true} />);
     const p = screen.getByText('Here is the list of notifications');
     expect(p).toBeInTheDocument();
   });
 
-  it('Rendering Notification without drawer', () => {
+  test('Rendering Notification without drawer', () => {
     render(<Notifications displayDrawer={false} />);
     const notificationContainer = screen.queryByText(
       'Here is the list of notifications'
@@ -62,7 +62,7 @@ describe('Notification tests', () => {
     expect(notificationContainer).not.toBeInTheDocument();
   });
 
-  it('Rendering Notification with drawer', () => {
+  test('Rendering Notification with drawer', () => {
     render(<Notifications displayDrawer={true} />);
     const p = screen.getByText('Here is the list of notifications');
     expect(p).toBeInTheDocument();
@@ -75,7 +75,7 @@ describe('Component re-rendering tests', () => {
     { id: 2, type: 'default', value: 'value 2', html: null },
   ];
 
-  it('should rerender with a longer list', () => {
+  test('should rerender with a longer list', () => {
     const longerList = [
       ...notifications,
       { id: 3, type: 'default', value: 'value 3', html: null },
@@ -93,7 +93,7 @@ describe('Component re-rendering tests', () => {
 });
 
 describe('Notifications state tests', () => {
-  it('When displayDrawer is true, the menu is displayed', () => {
+  test('When displayDrawer is true, the menu is displayed', () => {
     render(<Notifications displayDrawer={true} />);
     const list = screen.getByText('Here is the list of notifications');
     expect(list).toBeInTheDocument();
@@ -101,7 +101,7 @@ describe('Notifications state tests', () => {
     expect(notifs).not.toBeInTheDocument();
   });
 
-  it('When displayDrawer is false, the menu is not displayed', () => {
+  test('When displayDrawer is false, the menu is not displayed', () => {
     render(<Notifications displayDrawer={false} />);
     const notifs = screen.getByText('Your notifications');
     expect(notifs).toBeInTheDocument();
